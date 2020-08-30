@@ -76,11 +76,15 @@ WSGI_APPLICATION = 'healthcircle.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd47lrs9idq4hmf',
+        'HOST': 'ec2-184-73-249-9.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'mywrrweglyfica',
+        'PASSWORD': 'dbe14d8c1b3968b2edd286d12deeb44d59406392f1646d876a149b8006637939'
+
     }
 }
-
 AUTH_USER_MODEL = "main.User"
 
 # Password validation
