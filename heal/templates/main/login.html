@@ -1,4 +1,4 @@
-{% extends "main/layout.html" %}
+{% extends "heal/layout.html" %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'main:login' %}" method="post">
+    <form action="{% url 'heal:login' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
             <input autofocus class="form-control" type="text" name="username" placeholder="Username">
@@ -19,6 +19,6 @@
         <input class="btn btn-primary" type="submit" value="Login">
     </form>
 
-    Don't have an account? <a href="{% url 'main:register' %}">Register here.</a>
+    Don't have an account? <a href="{% url 'heal:register' %}">Register here.</a>
 
 {% endblock %}

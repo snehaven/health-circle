@@ -6,22 +6,22 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="/static/main/script.js"></script>
-    <link href="{% static 'main/styles.css' %}" rel="stylesheet" />
+    <script type="text/javascript" src="/static/heal/script.js"></script>
+    <link href="{% static 'heal/styles.css' %}" rel="stylesheet" />
   </head>
 
   <body>
     <div class="topnav" id="myTopnav">
-          <a id="home" href="{% url 'main:index' %}" class="active">Home</a>
+          <a id="home" href="{% url 'heal:index' %}" class="active">Home</a>
           <a href="#">Community</a>
           <a href="#">Message</a>
           <a href="#">About/Contact</a>
           <div class="topnav-right">
             {% if user.is_authenticated %}
-              <a href="{% url 'main:logout' %}">Log Out</a>
+              <a href="{% url 'heal:logout' %}">Log Out</a>
             {% else %}
-              <a href="{% url 'main:register' %}">Sign Up</a>
-              <a href="{% url 'main:login' %}">Login</a>
+              <a href="{% url 'heal:register' %}">Sign Up</a>
+              <a href="{% url 'heal:login' %}">Login</a>
             {% endif %}
           </div>
           <a href="javascript:void(0);" class="icon" onclick="myFunction()">
