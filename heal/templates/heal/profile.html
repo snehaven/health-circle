@@ -56,7 +56,6 @@ button:hover, a:hover {
           {% for post in posts %}
             <h5>{{ post.user }}</h5>
             {{ post.content }}
-            <p>Likes: <a href="{% url 'unlike' post.pk %}" style="color:red">-</a> <span style="size:12"> {{post.likes}} </span><a href="{% url 'likes' post.pk %}" style="color:green">+</a></p>
             <p style="color:grey">{{ post.timestamp }}</p>
             <hr>
           {% endfor %}
