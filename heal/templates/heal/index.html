@@ -1,5 +1,40 @@
 {% extends "heal/layout.html" %}
 {% block title %}Home Page{% endblock %}
 {% block body %}
-TODO
+  <div class="row">
+    <div class="col-lg-12" >
+      <svg height="350" width="800" class="element">
+        <polygon points="0,0 600,0 800,350 0,350" style="fill:#9eff4f;stroke:#9eff4f;stroke-width:1"/>
+        <text x="70%" y="50%" text-anchor="middle" fill="white" font-size="30">Health Circle</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section-container" style="margin-top:5%">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center">
+            <h2>About Us</h2>
+            <p>We are blah blah and we do blah blah. Lol</p>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'heal:register' %}"><input class="btn btn-primary btn-lg" type="submit" style="margin-left:35%" value="Signup"></a>
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'heal:login' %}"><input class="btn btn-primary btn-lg" type="submit" style="margin-left:35%" value="Login"></a>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+
+
 {% endblock %}

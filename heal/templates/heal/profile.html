@@ -1,0 +1,69 @@
+{% extends "network/layout.html" %}
+
+{% block style %}
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg">
+        </div>
+        <div class="col-lg" style="margin-top: 25px">
+          <img src="/static/network/blank_profile.png" alt="John" style="width:100%">
+          <h1>{{ profuser.username }}</h1>
+          <p>Followers: {{ numfr }}</p>
+          <div class="row">
+            <div class="col-6">
+              <p><a href="{% url 'follow' profuser.pk %}"><button >Follow</button></a></p>
+            </div>
+            <div class="col-6">
+              <p><a href="{% url 'unfollow' profuser.pk %}"><button >Unfollow</button></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+          <h3>{{ profuser.username }}'s posts</h3>
+        </div>
+        <div class="col-lg-2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+          {% for post in posts %}
+            <h5>{{ post.user }}</h5>
+            {{ post.content }}
+            <p>Likes: <a href="{% url 'unlike' post.pk %}" style="color:red">-</a> <span style="size:12"> {{post.likes}} </span><a href="{% url 'likes' post.pk %}" style="color:green">+</a></p>
+            <p style="color:grey">{{ post.timestamp }}</p>
+            <hr>
+          {% endfor %}
+        </div>
+        <div class="col-lg-2">
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

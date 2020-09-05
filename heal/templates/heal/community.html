@@ -1,0 +1,114 @@
+{% extends "heal/layout.html" %}
+{% block title %}Community{% endblock %}
+{% block body %}
+{% if user.is_authenticated %}
+    <div class="w3-container w3-purple" style="margin-bottom:10px;margin-top:3%">
+      <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+          <h1>Create a New Post</h1>
+        </div>
+        <div class="col-sm-1">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10">
+          <form  action="{% url 'heal:makepost' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control input-lg" name="content" type="text">
+            <input type="submit" class="btn btn-secondary" style="margin-top:5px;margin-bottom:10px">
+          </form>
+        </div>
+        <div class="col-lg-1">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+          {% for post in posts %}
+            <div class ="row">
+              <div class ="col-sm-10">
+                <h6><a href="{% url 'heal:profile' post.user.pk %}">{{ post.user }} </a></h6>
+              </div>
+              {% if post.user == curruser %}
+                <div class ="col-sm">
+                  <button class="btn btn-primary" id="button-{{post.id}}" data-id='{{ post.id }}'>Edit</button>
+                </div>
+              {% endif %}
+            </div>
+            <p id="post-{{post.id}}">{{ post.content }}</p>
+            <textarea data-id="{{post.id}}" id="post-edit-{{post.id}}" style="display:none;" class="form-control textarea" row="3">{{post.content}}</textarea>
+            <p style="color:grey">{{ post.timestamp }}</p>
+            <hr>
+          {% endfor %}
+
+        </div>
+        <div class="col-sm-1">
+        </div>
+      </div>
+    </div>
+    {% if posts.has_other_pages %}
+      <nav aria-label="..." style="margin-left:41%">
+        <ul class="pagination">
+          {% if posts.has_previous %}
+            <li class="page-item"><a  class="page-link" href="?page={{ posts.previous_page_number }}" tabindex="-1" aria-disabled="false">Previous</a></li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+          {% endif %}
+          {% for i in posts.paginator.page_range %}
+            {% if posts.number == i %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" >{{ i }} <span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+              <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if posts.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" aria-disabled="true">Next</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+
+  {% else %}
+  <div class="section-container" style="margin-top:5%">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center">
+            <h2>Please Log in to View Posts</h2>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'heal:register' %}"><input class="btn btn-primary btn-lg" type="submit" style="margin-left:35%" value="Signup"></a>
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'heal:login' %}"><input class="btn btn-primary btn-lg" type="submit" style="margin-left:35%" value="Login"></a>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  {% endif %}
+{% endblock %}
