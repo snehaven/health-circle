@@ -67,6 +67,8 @@ def register(request):
         return render(request, "heal/register.html")
 
 def community(request):
+    if request.user is None:
+        return HttpResponseRedirect(reverse("heal:login"))
     post_list = UserPost.objects.all().order_by('-timestamp')
     page = request.GET.get('page', 1)
     paginator = Paginator(post_list, 10)
@@ -103,16 +105,16 @@ def edit_post(request):
 
 def makepost(request):
     if request.user is None:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("heal:login"))
     if request.method =="POST":
         postreq = request.POST["content"]
         p = UserPost(user=request.user, content=postreq)
         p.save()
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("heal:community"))
 
 def profile(request, userid):
     if request.user is None:
-        return HttpResponseRedirect(reverse("login"))
+        return HttpResponseRedirect(reverse("heal:login"))
     user = User.objects.all().filter(pk=userid)[0]
     return render(request, "heal/profile.html", {
         "user": request.user,

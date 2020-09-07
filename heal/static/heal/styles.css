@@ -4,6 +4,32 @@ html {
 }
 
 body {background-color: #fafafa;}
+
+@keyframes move {
+              0% {
+                  opacity: 0;
+                  padding-top: 20px;
+              }
+
+              100% {
+                  opacity: 1
+                  padding-top: 0px;
+              }
+          }
+
+img {
+  position: relative;
+  animation-name: move;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.text-center {
+  animation-name: move;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #a6a6a6;
@@ -56,11 +82,6 @@ body {background-color: #fafafa;}
   color:white;
   margin:20px auto;
   position:relative;
-}
-
-.element {
-  shape-outside: polygon(0 0, 0 200px, 300px 600px);
-  margin-top: 25px;
 }
 
 footer {
